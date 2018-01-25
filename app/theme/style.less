@@ -1,0 +1,69 @@
+// *** Variables ***
+
+// Colors
+@background  : #EFEFEF;
+@light-blue  : #abecf4;
+@sky-blue    : #25BCD4;
+@snow        : #fff;
+@night       : #364040;
+@gray        : #4f5858;
+@shadow      : #888;
+@dark        : #e1e1e1;
+@error       : #c0392b;
+@transparent : transparent;
+
+// Font-Colors
+@dark-font  : #424249;
+@secondary  : #616161;
+@light-font : #01579B;
+
+// Size
+@max-width      : 1200px;
+
+// Padding & Margin
+@medium-padding : 10px;
+@medium-margin  : 15px;
+@small-padding  : 5px;
+@large-padding  : 40px;
+@small-margin   : 5px;
+@large-margin   : 20px;
+
+// media queries
+@full-screem : 1023px;
+@tablet      : 767px;
+@mobile      : 558px;
+
+.padding-nav-bar {
+  padding-top: 55px;
+}
+
+body {
+  margin      : 0;
+  font-family : helvetica;
+  overflow-x  : hidden;
+}
+
+.start {
+  text-align : left;
+}
+
+.center {
+  text-align : center;
+}
+
+.end {
+  text-align : right;
+}
+
+.base-margin-xs {
+  margin : 5px;
+}
+
+.notification-custom {
+  z-index : 100;
+  bottom  : 5% !important;
+  left    : 45% !important;
+  @media (min-device-width : 300px) and (max-device-width : 500px) {
+    left : 25% !important;
+  }
+}
