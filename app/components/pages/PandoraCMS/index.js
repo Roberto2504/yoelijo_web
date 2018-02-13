@@ -11,6 +11,9 @@ import NavBar from '../../ui/NavBar';
 import Styles from './styles';
 import radium from 'radium'
 
+// Stores
+import BurgerStore from '../../../stores/BurgerMenu';
+
 require('./style.less');
 
 @radium
@@ -37,7 +40,9 @@ class PandoraCMS extends Component {
   render () {
     return (
       <div id="Home">
-        <NavBar />
+        <NavBar {...{
+          burgerStore : BurgerStore,
+        }} />
         <div className="main-banner padding-nav-bar">
           <div className="row center">
             <div className="col-xs-12 center">

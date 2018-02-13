@@ -8,6 +8,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import {StyleRoot} from 'radium';
+// import firebase from 'firebase';
 import {observer} from 'mobx-react';
 
 // In-house modules
@@ -34,14 +35,21 @@ import CreateOrder from './components/pages/CreateOrder';
 import PandoraCMS from './components/pages/PandoraCMS';
 
 injectTapEventPlugin();
-const auth = new AuthService(Constants.auth0ClientID, Constants.auth0Domain);
-// validate authentication for private routes
-const requireAuth = (nextState, replace) => {
-  if (!auth.loggedIn()) {
-    replace({ pathname : '/' });
-  }
-};
-
+// const auth = new AuthService(Constants.auth0ClientID, Constants.auth0Domain);
+// // validate authentication for private routes
+// const requireAuth = (nextState, replace) => {
+//   if (!auth.loggedIn()) {
+//     replace({ pathname : '/' });
+//   }
+// };
+// var config = {
+//     apiKey: "AIzaSyCBVV-BADea7PB_33t1dzx-h3KIpZsdwk0",
+//     authDomain: "tavuel506.firebaseapp.com",
+//     databaseURL: "https://tavuel506.firebaseio.com",
+//     projectId: "tavuel506",
+//     storageBucket: "", // aqui va el de amazon
+//     messagingSenderId: "536950237048"
+//   };
 @observer
 class App extends React.Component {
   static propTypes = {
@@ -53,11 +61,8 @@ class App extends React.Component {
     super(props);
   }
 
-  // componentWillMount () {
-  //   AuthStore.refreshToken();
-  //   if (!AuthStore.currentUser.name) {
-  //     AuthStore.setCurrentUser();
-  //   }
+  // componentDidMount () {
+  //   firebase.initializeApp(config);
   // }
 
   render () {
@@ -73,14 +78,14 @@ class App extends React.Component {
             <HamburgerMenu {...{
               burgerMenuStore : BurgerMenuStore,
               openMenu        : BurgerMenuStore.openMenu,
-              auth            : auth,
+              auth            : null,
             }} />
             <Alert {...{
               openSnackBar : SnackBarStore.openSnackBar,
               message      : SnackBarStore.message,
             }}/>
             <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
-              {React.cloneElement(this.props.children || <div />, { key : pathname, auth : auth, authStore : AuthStore})}
+              {React.cloneElement(this.props.children || <div />, { key : pathname } )}
             </ReactCSSTransitionGroup>
           </div>
           </MuiThemeProvider>
@@ -99,11 +104,11 @@ function handleUpdate () {
 
 render((
   <Router onUpdate={handleUpdate} history={browserHistory}>
-    <Route path="/" component={App} auth={auth}>
-      <IndexRoute component={Home} />
-      <Route path="pandoraCMS" component={PandoraCMS} onEnter={requireAuth} auth={auth} />
-      <Route path="crearPedido" component={CreateOrder} onEnter={requireAuth} auth={auth}/>
-      <Route path="mantenimientoProducto" component={ProductsManager} onEnter={requireAuth} auth={auth} />
+    <Route path="/" component={App} > 
+      <IndexRoute component={PandoraCMS} />
+      <Route path="pandoraCMS" component={Home} /> 
+      <Route path="crearPedido" component={CreateOrder} />
+      <Route path="mantenimientoProducto" component={ProductsManager} />
     </Route>
   </Router>
 ), document.getElementById('app'));

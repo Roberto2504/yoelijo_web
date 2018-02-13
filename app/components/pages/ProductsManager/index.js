@@ -18,6 +18,9 @@ import Product from '../../../stores/Product';
 import Styles from './styles';
 import radium from 'radium';
 
+// Stores
+import BurgerStore from '../../../stores/BurgerMenu';
+
 require('./style.less');
 
 @radium
@@ -49,14 +52,16 @@ class Home extends Component {
   }
 
   renderLittleIcon () {
-    return <img style={Styles.littleLogo} src="../../../images/logos/logo_pequeno.png" />;
+    return <img style={Styles.littleLogo} src="url(../../../images/logos/logo_pequeno.png)" />;
   }
 
   render () {
     const { products, openEditModal, productSelected } = Product;
     return (
       <div id="ProductsManager">
-        <NavBar />
+        <NavBar {...{
+          burgerStore : BurgerStore,
+        }} />
         <div className="main-banner padding-nav-bar">
           {
             // <div className="row center">

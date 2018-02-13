@@ -39,7 +39,7 @@ class NavBar extends Component {
           </IconButton>
         </div>
         <div className="col-xs-3 end">
-          <RaisedButton label="Login" onClick={this.props.auth.login}/>
+          <RaisedButton label="Login" />
         </div>
       </div>
     );

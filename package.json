@@ -4,11 +4,7 @@
   "description": "bop front end",
   "main": "app/app.js",
   "port": 2504,
-  "homepage": "https://Roberto_2504@bitbucket.org/bopcloud/yoelijo_web.git",
-  "repository": {
-    "type": "git",
-    "url": "git@bitbucket.org:trt_dnamic/gforms_front_end.git"
-  },
+  "homepage": "https://roberto2504.github.io/yoelijo_web/",
   "scripts": {
     "dev": "webpack-dashboard -- webpack-dev-server --port 2504 --hot --history-api-fallback --devtool sourcemaps --progress --colors --host 0.0.0.0",
     "build": "NODE_ENV=production webpack -p --config webpack.production.config.js",
@@ -43,7 +39,6 @@
   },
   "dependencies": {
     "animate.css": "3.5.2",
-    "auth0-lock": "10.11.0",
     "axios": "0.15.3",
     "classnames": "2.2.5",
     "element-class": "0.2.2",

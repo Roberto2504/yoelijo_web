@@ -24,7 +24,7 @@ require('./style.less');
 class Home extends Component {
   static propTypes = {
     location : React.PropTypes.object,
-    auth     : React.PropTypes.instanceOf(AuthService),
+    // auth     : React.PropTypes.instanceOf(AuthService),
   }
   constructor (props) {
     super(props);
@@ -56,7 +56,6 @@ class Home extends Component {
     return (
       <div id="Home">
         <NavBar {...{
-          auth        : this.props.auth,
           burgerStore : BurgerStore,
         }} />
         <div className="main-banner padding-nav-bar">

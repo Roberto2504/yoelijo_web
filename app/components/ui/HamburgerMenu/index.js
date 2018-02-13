@@ -55,7 +55,6 @@ class HamburgerMenu extends Component {
   }
 
   render () {
-    console.log(this.props.auth, 'this is auth in hamburger menu');
     return (
       <div id="Burger">
         <div className="log-out-container row">
