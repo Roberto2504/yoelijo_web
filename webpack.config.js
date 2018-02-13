@@ -5,7 +5,7 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 module.exports = {
   entry: [
     'babel-polyfill',
-    'webpack-dev-server/client?http://138.197.8.112:2504',
+    'webpack-dev-server/client?http://0.0.0.0:2504',
     'webpack/hot/only-dev-server',
     './app/app',
   ],

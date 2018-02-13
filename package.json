@@ -6,7 +6,7 @@
   "port": 2504,
   "homepage": "https://roberto2504.github.io/yoelijo_web/",
   "scripts": {
-    "dev": "webpack-dashboard -- webpack-dev-server --port 2504 --hot --history-api-fallback --devtool sourcemaps --progress --colors --host 138.197.8.112",
+    "dev": "webpack-dashboard -- webpack-dev-server --port 2504 --hot --history-api-fallback --devtool sourcemaps --progress --colors --host 0.0.0.0",
     "build": "NODE_ENV=production webpack -p --config webpack.production.config.js",
     "test": "eslint app"
   },
