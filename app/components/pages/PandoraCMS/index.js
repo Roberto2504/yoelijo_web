@@ -46,7 +46,7 @@ class PandoraCMS extends Component {
         <div className="main-banner padding-nav-bar">
           <div className="row center">
             <div className="col-xs-12 center">
-              <h1 style={Styles.headerTitle}>Pandora</h1>
+              <h1 style={Styles.headerTitle}>Pandorsa</h1>
             </div>
           </div>
           <div className="row center" style={Styles.header}>
