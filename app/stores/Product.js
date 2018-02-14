@@ -35,7 +35,7 @@ class ProductStore {
   @action editProduct = async (info) => {
     try {
       Loader.toggleLoader();
-      const { status, data } = await axios.post(`${apiUrl}product/updateProduct`, info);
+      const { status, data } = await axios.post('product/updateProduct', info);
       runInAction('reload product', () => {
         const products = this.products;
         const productIndex = _.findIndex(products,  {'_id' : info._id});
@@ -94,7 +94,7 @@ class ProductStore {
         });
         this.order = order;
       } else {
-        const { status, data } = await axios.post(`${apiUrl}product/findProduct`, {seeker});
+        const { status, data } = await axios.post('product/findProduct', {seeker});
         runInAction('reload product', () => {
           if (status === 200) {
             response.count = 1;
@@ -116,7 +116,7 @@ class ProductStore {
   @action deleteProduct = async (info) => {
     try {
       Loader.toggleLoader();
-      const { status, data } = await axios.post(`${apiUrl}product/deleteProduct`, info);
+      const { status, data } = await axios.post('product/deleteProduct', info);
       runInAction('reload product', () => {
         const products = this.products;
         const productIndex = _.findIndex(products,  {'_id' : info._id});
@@ -180,7 +180,7 @@ class ProductStore {
       try {
         Async.eachSeries(products, async (product, callback) => {
           try {
-            const { status, data } = await axios.post(`${apiUrl}product/createProduct`, product);;
+            const { status, data } = await axios.post('apiUrl}product/createProduct', product);;
             callback(null);
           } catch (err) {
             callback(err);
@@ -200,7 +200,7 @@ class ProductStore {
   @action searchProduct = async (code) => {
     try {
       Loader.toggleLoader();
-      const { status, data } = await axios.get(`${apiUrl}product/search/${code}`);
+      const { status, data } = await axios.get(`product/search/${code}`);
       runInAction('reload product', () => {
         this.products = data.response;
         this.pageProducts = 1;
@@ -220,7 +220,7 @@ class ProductStore {
         page  : this.pageProducts,
         limit :20,
       };
-      const { status, data } = await axios.post(`${apiUrl}product/getProducts`, info);
+      const { status, data } = await axios.post('product/getProducts', info);
       runInAction('reload product', () => {
         this.products = data.response;
         this.pageProducts += 1;
@@ -240,7 +240,7 @@ class ProductStore {
         limit : 20,
       };
       Loader.toggleLoader();
-      const { status, data } = await axios.post(`${apiUrl}product/getProducts`, info);
+      const { status, data } = await axios.post('product/getProducts', info);
       runInAction('reload product', () => {
         this.products = [...this.products, ...data.response];
         this.pageProducts += 1;

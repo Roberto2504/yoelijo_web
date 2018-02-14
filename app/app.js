@@ -35,13 +35,13 @@ import CreateOrder from './components/pages/CreateOrder';
 import PandoraCMS from './components/pages/PandoraCMS';
 
 injectTapEventPlugin();
-// const auth = new AuthService(Constants.auth0ClientID, Constants.auth0Domain);
-// // validate authentication for private routes
-// const requireAuth = (nextState, replace) => {
-//   if (!auth.loggedIn()) {
-//     replace({ pathname : '/' });
-//   }
-// };
+const auth = new AuthService(Constants.auth0ClientID, Constants.auth0Domain);
+// validate authentication for private routes
+const requireAuth = (nextState, replace) => {
+  if (!auth.loggedIn()) {
+    replace({ pathname : '/' });
+  }
+};
 // var config = {
 //     apiKey: "AIzaSyCBVV-BADea7PB_33t1dzx-h3KIpZsdwk0",
 //     authDomain: "tavuel506.firebaseapp.com",
@@ -59,6 +59,13 @@ class App extends React.Component {
 
   constructor (props) {
     super(props);
+  }
+
+  componentWillMount () {
+    AuthStore.refreshToken();
+    if (!AuthStore.currentUser.name) {
+      AuthStore.setCurrentUser();
+    }
   }
 
   // componentDidMount () {
@@ -85,7 +92,7 @@ class App extends React.Component {
               message      : SnackBarStore.message,
             }}/>
             <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
-              {React.cloneElement(this.props.children || <div />, { key : pathname } )}
+              {React.cloneElement(this.props.children || <div />, { key : pathname, auth : auth, authStore : AuthStore} )}
             </ReactCSSTransitionGroup>
           </div>
           </MuiThemeProvider>
@@ -104,11 +111,11 @@ function handleUpdate () {
 
 render((
   <Router onUpdate={handleUpdate} history={browserHistory}>
-    <Route path="/" component={App} > 
-      <IndexRoute component={PandoraCMS} />
-      <Route path="pandoraCMS" component={Home} /> 
-      <Route path="crearPedido" component={CreateOrder} />
-      <Route path="mantenimientoProducto" component={ProductsManager} />
+    <Route path="/" component={App} auth={auth} > 
+      <IndexRoute component={PandoraCMS}  auth={auth} />
+      <Route path="pandoraCMS" component={Home}  onEnter={requireAuth} auth={auth}/> 
+      <Route path="crearPedido" component={CreateOrder}  onEnter={requireAuth} auth={auth} />
+      <Route path="mantenimientoProducto" component={ProductsManager}  onEnter={requireAuth} auth={auth} />
     </Route>
   </Router>
 ), document.getElementById('app'));
