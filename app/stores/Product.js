@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { observable, action, runInAction, useStrict } from 'mobx';
 import Async from 'async';
-import _ from 'lodash'
+import _ from 'lodash';
 
 // Stores
 import SnackBarStore from './SnackBar';
@@ -28,7 +28,7 @@ class ProductStore {
   setProperty (type) {
     return {
       0 : editProduct,
-      1 : 'myCode'
+      1 : 'myCode',
     }[type];
   }
 
@@ -146,12 +146,12 @@ class ProductStore {
       let lenght = sheet['!ref'].split(':');
       lenght = Number(lenght[1][0].charCodeAt(0) - 97) - Number(lenght[0][0].charCodeAt(0) - 97);
       let count = 0;
-      let object= {};
-      let products = [];
+      let object = {};
+      const products = [];
       delete sheet['!margins'];
       delete sheet['!ref'];
-      let canvas = document.createElement('CANVAS');
-      let img = document.createElement('img');
+      const canvas = document.createElement('CANVAS');
+      const img = document.createElement('img');
       _.forEach(sheet, (row) => {
         object[this.setProperty(count)] = row.v;
         count ++;
@@ -162,7 +162,7 @@ class ProductStore {
         }
       });
       const newProducts = products.map((product, i) => {
-        const p = Productos.find(product => product.id === i+2);
+        const p = Productos.find(product => product.id === i + 2);
         return {
           code    : String(product.code),
           myCode  : String(product.myCode),
@@ -180,7 +180,7 @@ class ProductStore {
       try {
         Async.eachSeries(products, async (product, callback) => {
           try {
-            const { status, data } = await axios.post('apiUrl}product/createProduct', product);;
+            const { status, data } = await axios.post('apiUrl}product/createProduct', product); 
             callback(null);
           } catch (err) {
             callback(err);
@@ -218,7 +218,7 @@ class ProductStore {
       Loader.toggleLoader();
       const info = {
         page  : this.pageProducts,
-        limit :20,
+        limit : 20,
       };
       const { status, data } = await axios.post('product/getProducts', info);
       runInAction('reload product', () => {

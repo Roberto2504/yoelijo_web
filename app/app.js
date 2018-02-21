@@ -42,14 +42,14 @@ injectTapEventPlugin();
 //     replace({ pathname : '/' });
 //   }
 // };
-// var config = {
-//     apiKey: "AIzaSyCBVV-BADea7PB_33t1dzx-h3KIpZsdwk0",
-//     authDomain: "tavuel506.firebaseapp.com",
-//     databaseURL: "https://tavuel506.firebaseio.com",
-//     projectId: "tavuel506",
-//     storageBucket: "", // aqui va el de amazon
-//     messagingSenderId: "536950237048"
-//   };
+// let config = {
+//   apiKey            : 'AIzaSyCBVV-BADea7PB_33t1dzx-h3KIpZsdwk0',
+//   authDomain        : 'tavuel506.firebaseapp.com',
+//   databaseURL       : 'https://tavuel506.firebaseio.com',
+//   projectId         : 'tavuel506',
+//   storageBucket     : '', // aqui va el de amazon
+//   messagingSenderId : '536950237048',
+// };
 @observer
 class App extends React.Component {
   static propTypes = {
