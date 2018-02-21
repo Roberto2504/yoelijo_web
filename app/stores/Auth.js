@@ -22,7 +22,7 @@ class AuthStore {
       if (profile) {
         console.log(profile, 'profile');
         const { status, data } = await axios.post('user/login', profile);
-          console.log(data);
+        console.log(data);
         if (status === 200) {
           runInAction('update current user', () => {
             this.currentUser = _.get(data.response, 'user', {});
@@ -53,7 +53,7 @@ class AuthStore {
         }
       }
     } catch (err) {
-      console.log(err,'error here');
+      console.log(err, 'error here');
       SnackBarStore.setMessage(err.message);
     }
   }
@@ -82,12 +82,12 @@ tokenWorker.addEventListener('message', (e) => {
 transaction(() => {
   axios.interceptors.request.use((config) => {
     const apiUrl = Constants.apiUrl;
-    console.log(`${apiUrl}/${config.url}que pasa aquiasd`); 
+    console.log(`${apiUrl}/${config.url}que pasa aquiasd`);
     const {token, refresh} = JSON.parse(localStorage.getItem('creds'))
       ? JSON.parse(localStorage.getItem('creds'))
       : {token : null, refresh : null};
     const useToken = !_.endsWith(config.url, 'refresh') ? token : refresh;
-    console.log(`${apiUrl}/${config.url}que pasa aqui`); 
+    console.log(`${apiUrl}/${config.url}que pasa aqui`);
     config.url = `${apiUrl}/${config.url}`;
     config.headers.Authorization = `Bearer ${useToken}`;
     return config;
