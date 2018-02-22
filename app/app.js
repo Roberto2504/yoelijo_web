@@ -21,7 +21,7 @@ import HamburgerMenu from './components/ui/HamburgerMenu';
 // Stores
 import SnackBarStore from './stores/SnackBar';
 import BurgerMenuStore from './stores/BurgerMenu';
-import AuthStore from './stores/Auth';
+// import AuthStore from './stores/Auth';
 
 // CSS
 require('./theme/style.less');
@@ -61,12 +61,12 @@ class App extends React.Component {
     super(props);
   }
 
-  componentWillMount () {
-    AuthStore.refreshToken();
-    if (!AuthStore.currentUser.name) {
-      AuthStore.setCurrentUser();
-    }
-  }
+  // componentWillMount () {
+  //   AuthStore.refreshToken();
+  //   if (!AuthStore.currentUser.name) {
+  //     AuthStore.setCurrentUser();
+  //   }
+  // }
 
   // componentDidMount () {
   //   firebase.initializeApp(config);
